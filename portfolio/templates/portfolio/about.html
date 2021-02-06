@@ -1,0 +1,31 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %} About me{% endblock %}
+
+{% block background %} {% load static %} {% static 'portfolio/img/about.jpg' %} {% endblock %}
+
+{% block headers %}
+<h1>Formación</h1>
+<span class="subheading">Educación y otros conocimientos</span>
+{% endblock %}
+
+{% block content %}
+
+<div class="row mb-5">
+  {% comment %}
+  <h3>Formación académica</h3>
+  {% endcomment %}
+</div>
+  {%for edu in education %} 
+  <div class="row">  
+    <div class="col-md-2 offset-lg-1">
+      <img class="img-fluid avatar" src="{{edu.image.url}}" alt="">
+    </div>
+    <div class="col-md-8 ml-3 mt-4">
+      <h4>{{edu.title|safe}}</h4>
+      <p>{{edu.subtitle|safe|upper}}</p>
+      <p>{{edu.description|safe}}</p><br>
+    </div>
+  </div>
+  {% endfor %} 
+{% endblock %}

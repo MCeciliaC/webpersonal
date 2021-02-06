@@ -1,0 +1,23 @@
+{% extends 'portfolio/base.html' %}
+{% block title %}Contact{% endblock %}
+
+{% block background %} {% load static %} {% static 'portfolio/img/contact.jpg' %} {% endblock %}
+
+{% block headers %}
+    <h1>Contacto</h1>
+    <span class="subheading">Asesoría</span>
+{% endblock %}
+
+{% block content %}
+ <div class="row">   
+        <div class="col-lg-8 col-md-10 mx-auto">
+          {% for service in services %}
+          <p>{{service.text|safe}}</p>
+          {% endfor %}
+          <br>
+          <p><b>Email:</b> calderinimariacecilia@gmail.com</p>
+          {% comment %}{% endcomment %}
+          <p><b>Honorarios:</b> 5 U$D/h (precio base)</p>
+          
+  </div>
+{% endblock %}

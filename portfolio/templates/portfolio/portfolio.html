@@ -1,0 +1,78 @@
+{% extends 'portfolio/base.html' %}
+{% block title %}Portfolio{% endblock %}
+
+{% block background %} {% load static %} {% static 'portfolio/img/portfolio.jpg' %} {% endblock %}
+
+{% block headers %}
+<h1>Portfolio</h1>
+<span class="subheading">Trabajos realizados</span>
+
+{% endblock %}
+
+{% block content %}
+
+{%for project in projects %}
+
+	<!-- Proyect -->
+	<div class="mt-3">
+		<h2 class="section-heading title" id="{{project.title}}">{{project.title|upper}}</h2>  
+		<h5>{{project.tecnology|upper}}</h5>		
+	</div>
+
+	<div class="row project mb-5">  
+	{% if project.video%}
+	<video onhover="play();" class="container text-center col-10 mb-5" id="web" poster="" controls>
+		<source src="{{project.video.url}}" type="video/mp4">
+	</video>	
+	{% endif%}
+
+	{% if project.imageOne%}
+	<div class="container col-10">
+		<img class="img-fluid" src="{{project.imageOne.url}}" alt="">	 
+	</div>	
+	{% endif%}
+
+	{% if project.imageTwo%}
+	<div class="container col-10">
+		<img class="img-fluid" src="{{project.imageTwo.url}}" alt="">	 
+	</div>	
+	{% endif%}
+
+	<div class="container col-10">	
+		<p> <strong> Cliente: {{project.client}}</strong></p>	
+		<p>{{project.description|safe}}</p>
+		
+	{% if project.der%}
+		<p>Diagrama Entidad Relación:</p>
+			<div class="container text-center">
+			<img class="container text-center der" src="{{project.der.url}}" alt="">	
+		</div>	
+		<p>{{project.dertext|safe}}</p> <br>
+	{% endif%}
+	{% if project.git %}
+			<p><a href="{{project.git}}">Repositorio de Git</a></p>
+	{% endif %}
+
+	{% if project.credit %}
+			<p><a href="{{project.link}}">{{project.credit}}</a></p>
+	{% endif %}
+
+	<p>Créditos:</p>
+	<ul>
+	{%for cred in credit %}
+		{% if project == cred.category%}
+			{% if cred.link %}
+				<li><a href="{{cred.link}}">{{cred.title}}</a></li>
+			{% else %}
+				<li>{{cred.title}}</li>
+			{% endif %}
+		{% endif%}
+	{% endfor %}
+		</ul>
+	</div>
+	</div>
+		
+{% endfor%}
+
+
+{% endblock %}
